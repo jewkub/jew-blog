@@ -1,0 +1,11 @@
+{
+  "name": "jew-blog",
+  "version": "0.1.0",
+  "description": "just my blog built with strapi and nextjs",
+  "main": "index.js",
+  "repository": "git@github.com:jewkub/jew-blog.git",
+  "author": "Jew",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["frontend", "backend"]
+}
