@@ -7,5 +7,7 @@
   "author": "Jew",
   "license": "MIT",
   "private": true,
-  "workspaces": ["frontend", "backend"]
+  "workspaces": {
+    "packages": ["frontend"]
+  }
 }

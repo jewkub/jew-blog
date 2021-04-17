@@ -1,10 +1,11 @@
 import ReactMarkdown from "react-markdown";
-import Moment from "react-moment";
 import { fetchAPI } from "../../lib/api";
+import { DateTime } from 'luxon';
 import Layout from "../../components/layout";
 import Image from "../../components/image";
 import Seo from "../../components/seo";
 import { getStrapiMedia } from "../../lib/media";
+import rehypeRaw from 'rehype-raw';
 
 const Article = ({ article, categories }) => {
   const imageUrl = getStrapiMedia(article.image);
@@ -30,7 +31,7 @@ const Article = ({ article, categories }) => {
       </div>
       <div className="uk-section">
         <div className="uk-container uk-container-small">
-          <ReactMarkdown children={article.content} />
+          <ReactMarkdown rehypePlugins={[rehypeRaw]} children={article.content} />
           <hr className="uk-divider-small" />
           <div className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <div>
@@ -50,7 +51,7 @@ const Article = ({ article, categories }) => {
                 By {article.author.name}
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
-                <Moment format="MMM Do YYYY">{article.published_at}</Moment>
+                { DateTime.fromISO(article.publishedAt).toFormat('DDD') }
               </p>
             </div>
           </div>
@@ -81,7 +82,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { article: articles[0], categories },
-    revalidate: 1,
   };
 }
 
