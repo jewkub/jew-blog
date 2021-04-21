@@ -40,8 +40,9 @@ const Article = ({ article, categories }) => {
                   image={article.author.picture}
                   style={{
                     position: "static",
-                    borderRadius: "50%",
                     height: 30,
+                    width: 30,
+                    "border-radius": "50%"
                   }}
                 />
               )}
