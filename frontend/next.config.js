@@ -3,6 +3,6 @@ module.exports = {
     webpack5: true,
   },
   images: {
-    domains: ['localhost, backend.jewkub.dev'],
+    domains: ['localhost', 'backend.jewkub.dev'],
   },
 }
