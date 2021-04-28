@@ -8,7 +8,7 @@ import { getStrapiMedia } from "../../lib/media";
 import rehypeRaw from 'rehype-raw';
 
 const Article = ({ article, categories }) => {
-  const imageUrl = getStrapiMedia(article.image);
+  // const imageUrl = getStrapiMedia(article.image);
 
   const seo = {
     metaTitle: article.title,
@@ -23,8 +23,6 @@ const Article = ({ article, categories }) => {
       <div
         id="banner"
         className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
-        data-src={imageUrl}
-        data-srcset={imageUrl}
         data-uk-img
       >
         <h1>{article.title}</h1>
@@ -42,7 +40,7 @@ const Article = ({ article, categories }) => {
                     position: "static",
                     height: 30,
                     width: 30,
-                    "border-radius": "50%"
+                    borderRadius: "50%"
                   }}
                 />
               )}
