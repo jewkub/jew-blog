@@ -3,10 +3,11 @@ import React from 'react';
 import { useTheme, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import loadTheme from '../src/theme';
 
 // const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
-const Layout = ({ children }) => {
+export default function Layout({ children }) {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', {
     noSsr: true,
   });
@@ -18,11 +19,7 @@ const Layout = ({ children }) => {
   }
 
   const theme = React.useMemo(
-    () => createMuiTheme({
-      palette: {
-        mode,
-      },
-    }),
+    loadTheme(mode),
     [mode, prefersDarkMode],
   );
 
@@ -37,5 +34,3 @@ const Layout = ({ children }) => {
     // </ColorModeContext.Provider>
   )
 };
-
-export default Layout;

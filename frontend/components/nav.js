@@ -3,39 +3,39 @@ import Link from "next/link";
 import IconButton from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import { useTheme, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
+import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
+import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-
-// const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-// import { ColorModeContext } from '../pages/_app';
 
 export default function Nav(props) {
   const theme = useTheme();
-  // const colorMode = React.useContext(ColorModeContext);
+
   return (
-  <AppBar>
-    <Toolbar>
-      <Link href="/" sx={{ flexGrow: 1 }} passHref>
-        <Typography variant="h6" component="a" sx={{ flexGrow: 1 }}>
-          My blog
-        </Typography>
-      </Link>
+  <AppBar position='static'>
+    <Toolbar disableGutters>
       <Box
         sx={{
           display: 'flex',
           width: '100%',
           alignItems: 'center',
-          justifyContent: 'center',
-          bgcolor: 'background.default',
+          justifyContent: 'flex-start',
+          // bgcolor: 'background.default',
           color: 'text.primary',
-          borderRadius: 1,
           p: 3,
         }}
       >
-        <IconButton sx={{ ml: 1 }} onClick={props.toggleColorMode} color="inherit">
-          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
+        <Box>
+          <Link href="/" passHref>
+            <Typography variant="h6" component="p" sx={{ }}>
+              My blog
+            </Typography>
+          </Link>
+        </Box>
+        <Box sx={{marginLeft: 'auto'}}>
+          <IconButton aria-label={'Dark Mode'} sx={{ ml: 1 }} onClick={props.toggleColorMode}>
+            {theme.palette.mode === 'dark' ? <Brightness4RoundedIcon /> : <Brightness7RoundedIcon />}
+          </IconButton>
+        </Box>
       </Box>
     </Toolbar>
   </AppBar>

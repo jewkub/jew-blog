@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../pages/_app";
 import { getStrapiMedia } from "../src/media";
 
-const Seo = ({ seo }) => {
+export default function Seo({ seo }) {
   const { defaultSeo, siteName } = useContext(GlobalContext);
   const seoWithDefaults = {
     ...defaultSeo,
@@ -45,5 +45,3 @@ const Seo = ({ seo }) => {
     </Head>
   );
 };
-
-export default Seo;

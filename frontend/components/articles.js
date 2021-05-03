@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 // import Card from '@material-ui/core/Card';
 
-const Articles = ({ articles }) => {
+export default function Articles({ articles }) {
   // const classes = useStyles();
   // console.log(classes);
 
@@ -15,7 +15,7 @@ const Articles = ({ articles }) => {
   const rightArticles = articles.slice(leftArticlesCount, articles.length); */
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} mt={0}>
       {
         articles.map((article, i) => (
           <Grid item xs={12} md={6} key={ article.slug }>
@@ -26,5 +26,3 @@ const Articles = ({ articles }) => {
     </Grid>
   );
 };
-
-export default Articles;

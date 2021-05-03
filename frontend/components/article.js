@@ -10,24 +10,20 @@ const useStyles = makeStyles((theme) => ({
   root: {
     cursor: 'pointer',
     '&:hover': {
-      background: '#f00',
+      background: theme.palette.action.hover,
     },
   },
 }));
 
-const Article = ({ article }) => {
+export default function Article({ article }) {
   const classes = useStyles();
   return (
     <Link as={`/article/${article.slug}`} href="/article/[slug]">
       <Card className={classes.root}>
         <CardContent>
-          <Typography variant="h5">
-            { article.title }
-          </Typography>
+          <Typography variant="h5" component="h1" children={ article.title }/>
         </CardContent>
       </Card>
     </Link>
   );
 };
-
-export default Article;

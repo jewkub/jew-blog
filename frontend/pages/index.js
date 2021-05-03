@@ -40,10 +40,7 @@ const Home = ({ articles, homepage }) => {
   return (
     <>
       <Seo seo={homepage.seo} />
-      <Container>
-        <Box my={4}>
-          <Typography align="center" variant="h4" component="h1">My blog</Typography>
-        </Box>
+      <Container pt={4}>
         <Articles articles={articles} />
       </Container>
       <Copyright/>
