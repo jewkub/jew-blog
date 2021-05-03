@@ -1,35 +1,29 @@
 import React from "react";
-import Card from "./card";
+import Article from "./article";
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+// import Card from '@material-ui/core/Card';
 
 const Articles = ({ articles }) => {
-  const leftArticlesCount = Math.ceil(articles.length / 5);
+  // const classes = useStyles();
+  // console.log(classes);
+
+  /* const leftArticlesCount = Math.ceil(articles.length / 5);
   const leftArticles = articles.slice(0, leftArticlesCount);
-  const rightArticles = articles.slice(leftArticlesCount, articles.length);
+  const rightArticles = articles.slice(leftArticlesCount, articles.length); */
 
   return (
-    <div>
-      <div className="uk-child-width-1-2@s uk-grid">
-        <div>
-          {leftArticles.map((article, i) => {
-            return (
-              <Card article={article} key={`article__left__${article.slug}`} />
-            );
-          })}
-        </div>
-        <div>
-          <div className="uk-child-width-1-2@m uk-grid-match uk-grid">
-            {rightArticles.map((article, i) => {
-              return (
-                <Card
-                  article={article}
-                  key={`article__left__${article.slug}`}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
+    <Grid container spacing={3}>
+      {
+        articles.map((article, i) => (
+          <Grid item xs={12} md={6} key={ article.slug }>
+            <Article article={article}/>
+          </Grid>
+        ))
+      }
+    </Grid>
   );
 };
 

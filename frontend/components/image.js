@@ -1,4 +1,4 @@
-import { getStrapiMedia } from "../lib/media";
+import { getStrapiMedia } from "../src/media";
 import NextImage from 'next/image';
 
 function Image({ image, style }) {

@@ -8,6 +8,8 @@
   "license": "MIT",
   "private": true,
   "workspaces": {
-    "packages": ["frontend"]
+    "packages": [
+      "frontend"
+    ]
   }
 }

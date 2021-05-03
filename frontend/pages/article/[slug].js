@@ -1,13 +1,13 @@
 import ReactMarkdown from "react-markdown";
-import { fetchAPI } from "../../lib/api";
+import { fetchAPI } from "../../src/api";
 import { DateTime } from 'luxon';
 import Layout from "../../components/layout";
 import Image from "../../components/image";
 import Seo from "../../components/seo";
-import { getStrapiMedia } from "../../lib/media";
+import { getStrapiMedia } from "../../src/media";
 import rehypeRaw from 'rehype-raw';
 
-const Article = ({ article, categories }) => {
+const Article = ({ article }) => {
   // const imageUrl = getStrapiMedia(article.image);
 
   const seo = {
@@ -18,7 +18,7 @@ const Article = ({ article, categories }) => {
   };
 
   return (
-    <Layout categories={categories}>
+    <>
       <Seo seo={seo} />
       <div
         id="banner"
@@ -56,7 +56,7 @@ const Article = ({ article, categories }) => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

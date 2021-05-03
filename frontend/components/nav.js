@@ -1,24 +1,43 @@
-import React from "react";
+import React from 'react';
 import Link from "next/link";
+import IconButton from '@material-ui/core/IconButton';
+import Box from '@material-ui/core/Box';
+import { useTheme, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
-const Nav = () => {
+// const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+// import { ColorModeContext } from '../pages/_app';
+
+export default function Nav(props) {
+  const theme = useTheme();
+  // const colorMode = React.useContext(ColorModeContext);
   return (
-    <div>
-      <nav className="uk-navbar-container uk-navbar">
-        <div className="uk-navbar-left">
-          <ul className="uk-navbar-nav">
-            <li>
-              <Link href="/">
-                <a>Strapi Blog</a>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="uk-navbar-right">
-        </div>
-      </nav>
-    </div>
+  <AppBar>
+    <Toolbar>
+      <Link href="/" sx={{ flexGrow: 1 }} passHref>
+        <Typography variant="h6" component="a" sx={{ flexGrow: 1 }}>
+          My blog
+        </Typography>
+      </Link>
+      <Box
+        sx={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'background.default',
+          color: 'text.primary',
+          borderRadius: 1,
+          p: 3,
+        }}
+      >
+        <IconButton sx={{ ml: 1 }} onClick={props.toggleColorMode} color="inherit">
+          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+      </Box>
+    </Toolbar>
+  </AppBar>
   );
-};
-
-export default Nav;
+}
