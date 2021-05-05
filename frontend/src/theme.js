@@ -6,8 +6,9 @@ const theme = (mode) => () => createMuiTheme({
   palette: mode == 'dark' ? {
     mode: 'dark',
     primary: {
-      main: '#212121',
+      main: '#ffe082',
     },
+    appbar: '#212121',
     /* secondary: {
       light: '#ff7961',
       main: '#f44336',
@@ -21,7 +22,8 @@ const theme = (mode) => () => createMuiTheme({
     mode: 'light',
     primary: {
       main: '#ffe082',
-    }
+    },
+    appbar: '#ffe082',
   },
 });
 

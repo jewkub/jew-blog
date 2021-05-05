@@ -4,6 +4,7 @@ import { useTheme, ThemeProvider, createMuiTheme } from '@material-ui/core/style
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import loadTheme from '../src/theme';
+import Footer from './footer';
 
 // const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -30,6 +31,7 @@ export default function Layout({ children }) {
         <CssBaseline />
         <Nav toggleColorMode={toggleColorMode}/>
         {children}
+        <Footer/>
       </ThemeProvider>
     // </ColorModeContext.Provider>
   )

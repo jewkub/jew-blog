@@ -1,61 +1,85 @@
 import ReactMarkdown from "react-markdown";
 import { fetchAPI } from "../../src/api";
 import { DateTime } from 'luxon';
+import { getStrapiMedia } from "../../src/media";
+import Container from '@material-ui/core/Container';
+import Divider from '../../components/divider';
 import Layout from "../../components/layout";
 import Image from "../../components/image";
 import Seo from "../../components/seo";
-import { getStrapiMedia } from "../../src/media";
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Link from '../../src/link';
+import Copyright from '../../components/footer';
+import Button from '@material-ui/core/Button';
+import MuiLink from '@material-ui/core/Link';
+// import { getStrapiMedia } from "../../src/media";
+import { useTheme } from '@material-ui/core/styles';
 import rehypeRaw from 'rehype-raw';
+import { Avatar, Stack } from "@material-ui/core";
 
-const Article = ({ article }) => {
-  // const imageUrl = getStrapiMedia(article.image);
-
+export default function Article({ article }) {
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
     shareImage: article.image,
     article: true,
   };
+  const theme = useTheme();
 
   return (
     <>
       <Seo seo={seo} />
-      <div
-        id="banner"
-        className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
-        data-uk-img
-      >
-        <h1>{article.title}</h1>
-      </div>
-      <div className="uk-section">
-        <div className="uk-container uk-container-small">
-          <ReactMarkdown rehypePlugins={[rehypeRaw]} children={article.content} />
-          <hr className="uk-divider-small" />
-          <div className="uk-grid-small uk-flex-left" data-uk-grid="true">
-            <div>
-              {article.author.picture && (
-                <Image
-                  image={article.author.picture}
-                  style={{
-                    position: "static",
-                    height: 30,
-                    width: 30,
-                    borderRadius: "50%"
-                  }}
-                />
-              )}
-            </div>
-            <div className="uk-width-expand">
-              <p className="uk-margin-remove-bottom">
-                By {article.author.name}
-              </p>
-              <p className="uk-text-meta uk-margin-remove-top">
-                { DateTime.fromISO(article.publishedAt).toFormat('DDD') }
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Container pt={4}>
+        <h1 style={{fontSize: '3em', marginBottom: '10px'}}>{article.title}</h1>
+        <Grid container spacing={1} mb={5}>
+          <Grid item xs='auto'>
+            <Avatar
+              aria-label='avatar'
+              alt={ article.author.picture }
+              src={ getStrapiMedia(article.author.picture) }/>
+          </Grid>
+          <Grid item>
+            <Stack spacing={0}>
+              <span>By {article.author.name}</span>
+              <span style={{
+                color: theme.palette.text.secondary,
+                fontSize: 'smaller',
+              }} children={DateTime.fromISO(article.publishedAt).toFormat('DDD')}/>
+            </Stack>
+          </Grid>
+        </Grid>
+        <ReactMarkdown
+          rehypePlugins={[rehypeRaw]}
+          components={{
+            a: MuiLink
+          }}
+          children={article.content} />
+        <Divider/>
+        <Grid container spacing={1}>
+          <Grid item xs='auto'>
+            <Image
+              image={article.author.picture}
+              style={{
+                height: 40,
+                width: 40,
+                borderRadius: "50%"
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Stack spacing={0}>
+              <span>By {article.author.name}</span>
+              <span style={{
+                color: theme.palette.text.secondary,
+                fontSize: 'smaller',
+              }} children={DateTime.fromISO(article.publishedAt).toFormat('DDD')}/>
+            </Stack>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 };
@@ -77,11 +101,9 @@ export async function getStaticProps({ params }) {
   const articles = await fetchAPI(
     `/articles?slug=${params.slug}&status=published`
   );
-  const categories = await fetchAPI("/categories");
+  // const categories = await fetchAPI("/categories");
 
   return {
-    props: { article: articles[0], categories },
+    props: { article: articles[0] },
   };
 }
-
-export default Article;

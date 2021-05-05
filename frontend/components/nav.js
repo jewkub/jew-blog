@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from "next/link";
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { useTheme, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
 import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
@@ -11,7 +12,10 @@ export default function Nav(props) {
   const theme = useTheme();
 
   return (
-  <AppBar position='static'>
+  <AppBar position='static' sx={{
+    background: theme.palette.appbar,
+    color: 'inherit'
+  }}>
     <Toolbar disableGutters>
       <Box
         sx={{
@@ -19,16 +23,12 @@ export default function Nav(props) {
           width: '100%',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          // bgcolor: 'background.default',
-          color: 'text.primary',
           p: 3,
         }}
       >
         <Box>
           <Link href="/" passHref>
-            <Typography variant="h6" component="p" sx={{ }}>
-              My blog
-            </Typography>
+            <Button color={'inherit'}>My Blog</Button>
           </Link>
         </Box>
         <Box sx={{marginLeft: 'auto'}}>
