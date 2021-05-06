@@ -1,7 +1,7 @@
 import { getStrapiMedia } from "../src/media";
 import NextImage from 'next/image';
 
-function Image({ image, style }) {
+export default function Image({ image, style }) {
   const imageUrl = getStrapiMedia(image);
   // TODO: waiting for this issue to embed styles in Image
   // https://github.com/vercel/next.js/discussions/18312?sort=new
@@ -18,11 +18,10 @@ function Image({ image, style }) {
   ); */
   return (
     <img
+      loading="lazy"
       src={imageUrl}
       alt={image.alternativeText || image.name}
       style={style}
     />
   )
 };
-
-export default Image;

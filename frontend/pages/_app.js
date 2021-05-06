@@ -31,8 +31,12 @@ const MyApp = ({ Component, pageProps }) => {
     <>
       <Head>
         <link rel="shortcut icon" href={getStrapiMedia(global.favicon)} />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="preload" as="css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
+        <link rel="preload" as="css" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+        <link rel="preconnect" href="https://backend.jewkub.dev"/>
+        <link rel="dns-prefetch" href="https://backend.jewkub.dev"/>
+
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
         {/* <link
           rel="stylesheet"
