@@ -1,5 +1,5 @@
 import { getStrapiMedia } from "../src/media";
-import NextImage from 'next/image';
+// import NextImage from 'next/image';
 
 export default function Image({ image, style }) {
   const imageUrl = getStrapiMedia(image);

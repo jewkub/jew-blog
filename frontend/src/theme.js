@@ -6,24 +6,17 @@ const theme = (mode) => () => createMuiTheme({
   palette: mode == 'dark' ? {
     mode: 'dark',
     primary: {
-      main: '#ffe082',
+      main: '#4caf50',
     },
     appbar: '#212121',
-    /* secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-    error: {
-      main: red.A400,
-    }, */
+    code: '#303030'
   } : {
     mode: 'light',
     primary: {
-      main: '#ffe082',
+      main: '#087f23',
     },
-    appbar: '#ffe082',
+    appbar: '#4caf50',
+    code: '#ddd'
   },
 });
 

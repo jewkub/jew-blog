@@ -1,13 +1,6 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import Article from "./article";
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
-import Hidden from '@material-ui/core/Hidden';
-// import Divider from './divider';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-// import Card from '@material-ui/core/Card';
 
 export default function Articles({ articles }) {
 

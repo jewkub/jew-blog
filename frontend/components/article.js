@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Image from "./image";
+// import Link from '../src/link';
 import { DateTime } from 'luxon';
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent';
@@ -9,12 +9,13 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
 import { getStrapiMedia } from "../src/media";
 import { Avatar, CardHeader, IconButton } from "@material-ui/core";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 export default function Article({ article }) {
+
   return (
     <Link as={`/article/${article.slug}`} href="/article/[slug]">
       <Card sx={{
+        height: '100%',
         boxShadow: 0,
         transition: 'transform .2s',
         '&:hover': {
@@ -26,7 +27,7 @@ export default function Article({ article }) {
           avatar={
             <Avatar
               aria-label='avatar'
-              alt={ article.author.picture }
+              alt={ article.author.name }
               src={ getStrapiMedia(article.author.picture) }/>
           }
           title={ article.author.name }

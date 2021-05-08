@@ -14,7 +14,8 @@ export default function Nav(props) {
   return (
   <AppBar position='static' sx={{
     background: theme.palette.appbar,
-    color: 'inherit'
+    color: 'inherit',
+    height: '6rem'
   }}>
     <Toolbar disableGutters>
       <Box

@@ -6,7 +6,6 @@ import React, { createContext } from "react";
 import { getStrapiMedia } from "../src/media";
 import { fetchAPI } from "../src/api";
 import NoSsr from '@material-ui/core/NoSsr';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import Layout from "../components/layout";
 // import theme from '../src/theme';
@@ -16,7 +15,7 @@ export const ColorModeContext = React.createContext({ toggleColorMode: () => {} 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
 
-const MyApp = ({ Component, pageProps }) => {
+export default function MyApp({ Component, pageProps }) {
   const { global } = pageProps;
 
   /* React.useEffect(() => {
@@ -30,9 +29,12 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href={getStrapiMedia(global.favicon)} />
-        <link rel="preload" as="css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
-        <link rel="preload" as="css" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        {/* <link rel="shortcut icon" href={getStrapiMedia(global.favicon)} />
+        don't use global here, some shit happened, global become undefined
+        maybe MyApp.getInitialProps in pages with getstaticpaths with fallback true will not run at all
+        https://github.com/vercel/next.js/discussions/16712#discussioncomment-59580 */}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
         <link rel="preconnect" href="https://backend.jewkub.dev"/>
         <link rel="dns-prefetch" href="https://backend.jewkub.dev"/>
@@ -77,5 +79,3 @@ MyApp.getInitialProps = async (ctx) => {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired,
 }; */
-
-export default MyApp;

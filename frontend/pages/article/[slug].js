@@ -1,26 +1,34 @@
-import ReactMarkdown from "react-markdown";
+import { useRouter } from 'next/router'
 import { fetchAPI } from "../../src/api";
 import { DateTime } from 'luxon';
 import { getStrapiMedia } from "../../src/media";
 import Container from '@material-ui/core/Container';
 import Divider from '../../components/divider';
-import Layout from "../../components/layout";
 import Image from "../../components/image";
 import Seo from "../../components/seo";
+import Markdown from '../../components/markdown';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Link from '../../src/link';
-import Copyright from '../../components/footer';
-import Button from '@material-ui/core/Button';
-import MuiLink from '@material-ui/core/Link';
-// import { getStrapiMedia } from "../../src/media";
+// import Link from '../../src/link';
+// import MuiLink from '@material-ui/core/Link';
 import { useTheme } from '@material-ui/core/styles';
-import rehypeRaw from 'rehype-raw';
 import { Avatar, Stack } from "@material-ui/core";
 
 export default function Article({ article }) {
+  const router = useRouter();
+
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
+  if (!article) {
+    router.push('/404');
+    return <></>;
+  }
+
   const seo = {
     metaTitle: article.title,
     metaDescription: article.description,
@@ -33,17 +41,17 @@ export default function Article({ article }) {
     <>
       <Seo seo={seo} />
       <Container pt={4}>
-        <h1 style={{fontSize: '3em', marginBottom: '10px'}}>{article.title}</h1>
+        <h1 style={{fontSize: '3rem', marginBottom: '10px'}}>{article.title}</h1>
         <Grid container spacing={1} mb={5}>
           <Grid item xs='auto'>
             <Avatar
               aria-label='avatar'
-              alt={ article.author.picture }
+              alt={ article.author.name }
               src={ getStrapiMedia(article.author.picture) }/>
           </Grid>
           <Grid item>
             <Stack spacing={0}>
-              <span>By {article.author.name}</span>
+              <span>{article.author.name}</span>
               <span style={{
                 color: theme.palette.text.secondary,
                 fontSize: 'smaller',
@@ -51,14 +59,11 @@ export default function Article({ article }) {
             </Stack>
           </Grid>
         </Grid>
-        <ReactMarkdown
-          rehypePlugins={[rehypeRaw]}
-          components={{
-            a: MuiLink
-          }}
-          children={article.content} />
+
+        <Markdown content={article.content} />
+
         <Divider/>
-        <Grid container spacing={1}>
+        <Grid container spacing={1} mb={2}>
           <Grid item xs='auto'>
             <Image
               image={article.author.picture}
@@ -93,7 +98,7 @@ export async function getStaticPaths() {
         slug: article.slug,
       },
     })),
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -104,6 +109,7 @@ export async function getStaticProps({ params }) {
   // const categories = await fetchAPI("/categories");
 
   return {
-    props: { article: articles[0] },
+    props: { article: articles[0] || null },
+    revalidate: 5,
   };
 }

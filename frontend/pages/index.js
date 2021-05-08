@@ -1,35 +1,29 @@
 import React from "react";
 import Articles from "../components/articles";
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Layout from "../components/layout";
 import Seo from "../components/seo";
-import ProTip from '../components/protip';
-import Link from '../src/link';
-import Footer from '../components/footer';
+import Image from "../components/image";
+// import Link from '../src/link';
 import { fetchAPI } from "../src/api";
-import Button from '@material-ui/core/Button';
+import { Typography } from "@material-ui/core";
 
 const Home = ({ articles, homepage }) => {
-  /*
-  return (<Layout>
-      <Seo seo={homepage.seo} />
-      <div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <h1>{homepage.hero.title}</h1>
-          <Articles articles={articles} />
-        </div>
-      </div>
-    </Layout>)
-   */
   return (
     <>
       <Seo seo={homepage.seo} />
       <Container>
+        <Box height={'calc(100vh - 6rem)'} maxHeight={'100vw'} sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundImage: 'url("/cover.jpg")',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}>
+          <Typography variant={'h1'} color={'rgba(0, 0, 0, 0.87)'}>Jew</Typography>
+        </Box>
         <Articles articles={articles} />
       </Container>
     </>
@@ -45,6 +39,7 @@ export async function getStaticProps() {
 
   return {
     props: { articles, homepage },
+    revalidate: 5,
   };
 }
 
