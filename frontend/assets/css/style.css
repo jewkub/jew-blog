@@ -30,6 +30,6 @@ img:hover {
   transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
-* {
-  transition: background-color 0.5s, color 0.5s;
+body {
+  transition: background-color 0.2s, color 0.2s;
 }

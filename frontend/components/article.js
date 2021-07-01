@@ -69,7 +69,7 @@ export default function Article({ article }) {
               />
               
             </div>
-            <img src={getStrapiMedia(article.cover)} style={{
+            <img src={getStrapiMedia(article.cover)} alt={article.title} style={{
                 position: 'absolute',
                 top: 0,
                 loading: 'lazy',

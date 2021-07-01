@@ -1,12 +1,15 @@
-import React from "react";
-import Articles from "../components/articles";
+import React, { lazy, Suspense } from "react";
+// import Articles from "../components/articles";
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Seo from "../components/seo";
 import Image from "../components/image";
 // import Link from '../src/link';
 import { fetchAPI } from "../src/api";
 import { Typography } from "@material-ui/core";
+
+const Articles = lazy(() => import('../components/articles'));
 
 const Home = ({ articles, homepage }) => {
   return (
@@ -24,7 +27,9 @@ const Home = ({ articles, homepage }) => {
         }}>
           <Typography variant={'h1'} color={'rgba(0, 0, 0, 0.87)'}>Jew</Typography>
         </Box>
-        <Articles articles={articles} />
+        <Suspense fallback={<CircularProgress />}>
+          <Articles articles={articles} />
+        </Suspense>
       </Container>
     </>
   );
