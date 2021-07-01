@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from 'react';
 import Link from "next/link";
+import Image from './image';
 // import Link from '../src/link';
 import { DateTime } from 'luxon';
 import Card from '@material-ui/core/Card'
+import Box from '@material-ui/core/Box'
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -10,7 +12,10 @@ import Typography from '@material-ui/core/Typography';
 import { getStrapiMedia } from "../src/media";
 import { Avatar, CardHeader, IconButton } from "@material-ui/core";
 
+import { Blurhash } from "react-blurhash";
+
 export default function Article({ article }) {
+  const [hideHash, setHideHash] = useState(false);
 
   return (
     <Link as={`/article/${article.slug}`} href="/article/[slug]">
@@ -23,25 +28,60 @@ export default function Article({ article }) {
         }
       }}>
         <CardActionArea>
-        <CardHeader
-          avatar={
-            <Avatar
-              aria-label='avatar'
-              alt={ article.author.name }
-              src={ getStrapiMedia(article.author.picture) }/>
-          }
-          title={ article.author.name }
-          subheader={ DateTime.fromISO(article.publishedAt).toFormat('DDD') }
-        />
+          <CardHeader
+            avatar={
+              <Avatar
+                aria-label='avatar'
+                alt={ article.author.name }
+                src={ getStrapiMedia(article.author.picture) }/>
+            }
+            title={ article.author.name }
+            subheader={ DateTime.fromISO(article.publishedAt).toFormat('DDD') }
+          />
         
-          <CardMedia
+          {/* <CardMedia
             sx={{
               height: 0,
               paddingTop: '56.25%', // 16:9
             }}
             image={getStrapiMedia(article.cover)}
             title={article.title}
-          />
+          /> */}
+          <div style={{
+            height: 0,
+            width: '100%',
+            paddingTop: '56.25%', // 16:9
+            position: 'relative',
+          }}>
+            <div style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              top: 0,
+              zIndex: 1,
+              visibility: hideHash ? 'hidden' : 'visible',
+              opacity: hideHash ? 0 : 1,
+              transition: 'visibility 0.5s, opacity 0.5s linear',
+            }}>
+              <Blurhash hash={'LGF5]+Yk^6#M@-5c,1J5@[or[Q6.'}
+                width="100%"
+                height="100%"
+              />
+              
+            </div>
+            <img src={getStrapiMedia(article.cover)} style={{
+                position: 'absolute',
+                top: 0,
+                loading: 'lazy',
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+              onLoad={() => {
+                setHideHash(true);
+              }}
+            />
+          </div>
           <CardContent>
             <Typography variant="h5" component="h1" children={ article.title }/>
             <Typography

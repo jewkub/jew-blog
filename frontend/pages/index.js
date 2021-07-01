@@ -33,7 +33,7 @@ const Home = ({ articles, homepage }) => {
 export async function getStaticProps() {
   // Run API calls in parallel
   const [articles, homepage] = await Promise.all([
-    fetchAPI("/articles?status=published"),
+    fetchAPI("/articles?status=published&_sort=publishedAt:desc"),
     fetchAPI("/homepage"),
   ]);
 

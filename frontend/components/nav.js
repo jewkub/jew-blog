@@ -14,6 +14,7 @@ export default function Nav(props) {
   return (
   <AppBar position='static' sx={{
     background: theme.palette.appbar,
+    transition: 'background-color 0.5s, color 0.5s',
     color: 'inherit',
     height: '6rem'
   }}>
