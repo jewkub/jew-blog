@@ -9,7 +9,7 @@ import Seo from "../../components/seo";
 import Markdown from '../../components/markdown';
 import Grid from '@material-ui/core/Grid';
 // import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 // import Link from '../../src/link';
 // import MuiLink from '@material-ui/core/Link';
 import { useTheme } from '@material-ui/core/styles';

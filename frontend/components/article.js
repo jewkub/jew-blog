@@ -63,7 +63,7 @@ export default function Article({ article }) {
               opacity: hideHash ? 0 : 1,
               transition: 'visibility 0.5s, opacity 0.5s linear',
             }}>
-              <Blurhash hash={'LGF5]+Yk^6#M@-5c,1J5@[or[Q6.'}
+              <Blurhash hash={article.blurhash || 'LGF5]+Yk^6#M@-5c,1J5@[or[Q6.'}
                 width="100%"
                 height="100%"
               />
@@ -77,9 +77,7 @@ export default function Article({ article }) {
                 height: '100%',
                 objectFit: 'cover',
               }}
-              onLoad={() => {
-                setHideHash(true);
-              }}
+              onLoad={() => setHideHash(true)}
             />
           </div>
           <CardContent>

@@ -40,6 +40,6 @@ export default function Markdown(props) {
         }} children={children} />,
       }}
       linkTarget='_blank'
-      children={props.content} />;
+      children={props.content} />
   </Box>
 }
