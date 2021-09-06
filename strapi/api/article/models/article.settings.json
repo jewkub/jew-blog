@@ -56,6 +56,10 @@
       "plugin": "upload",
       "required": true,
       "pluginOptions": {}
+    },
+    "blurhash": {
+      "type": "string",
+      "default": "LA8z[exaVsn%~pofxuja?ajYt6jY"
     }
   }
 }
