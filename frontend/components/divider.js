@@ -1,5 +1,5 @@
-import Divider from '@material-ui/core/Divider';
-import { useTheme } from '@material-ui/core/styles';
+import Divider from '@mui/material/Divider';
+import { useTheme } from '@mui/material/styles';
 
 export default function ArticleDivider() {
   const theme = useTheme();

@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import Article from "./article";
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 
 export default function Articles({ articles }) {
 

@@ -2,8 +2,8 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from 'rehype-raw';
 import Gist from 'react-gist';
 import Link from '../src/link';
-import { useTheme } from '@material-ui/core/styles';
-import { Box } from "@material-ui/core";
+import { useTheme } from '@mui/material/styles';
+import { Box } from "@mui/material";
 
 export default function Markdown(props) {
   const theme = useTheme();
@@ -37,6 +37,12 @@ export default function Markdown(props) {
           maxWidth: '80%',
           display: 'block',
           margin: '24px auto',
+        }} children={children} />,
+        blockquote: ({ children }) => <blockquote style={{
+          'box-shadow': 'gray 5px 0px 0px 0px inset',
+          padding: '5px 0px 5px 30px',
+          'margin-left': '-5px',
+          'font-style': 'italic',
         }} children={children} />,
       }}
       linkTarget='_blank'

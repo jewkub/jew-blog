@@ -2,18 +2,18 @@ import { useRouter } from 'next/router'
 import { fetchAPI } from "../../src/api";
 import { DateTime } from 'luxon';
 import { getStrapiMedia } from "../../src/media";
-import Container from '@material-ui/core/Container';
+import Container from '@mui/material/Container';
 import Divider from '../../components/divider';
 import Image from "../../components/image";
 import Seo from "../../components/seo";
 import Markdown from '../../components/markdown';
-import Grid from '@material-ui/core/Grid';
-// import Typography from '@material-ui/core/Typography';
-// import Box from '@material-ui/core/Box';
+import Grid from '@mui/material/Grid';
+// import Typography from '@mui/material/Typography';
+// import Box from '@mui/material/Box';
 // import Link from '../../src/link';
-// import MuiLink from '@material-ui/core/Link';
-import { useTheme } from '@material-ui/core/styles';
-import { Avatar, Stack } from "@material-ui/core";
+// import MuiLink from '@mui/material/Link';
+import { useTheme } from '@mui/material/styles';
+import { Avatar, Stack } from "@mui/material";
 
 export default function Article({ article }) {
   const router = useRouter();

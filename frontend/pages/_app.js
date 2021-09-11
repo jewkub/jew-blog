@@ -5,8 +5,8 @@ import "../assets/css/style.css";
 import React, { createContext } from "react";
 import { getStrapiMedia } from "../src/media";
 import { fetchAPI } from "../src/api";
-import NoSsr from '@material-ui/core/NoSsr';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import NoSsr from '@mui/material/NoSsr';
+import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 import Layout from "../components/layout";
 // import theme from '../src/theme';
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from "next/link";
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import { useTheme } from '@material-ui/core/styles';
-import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
-import Brightness7RoundedIcon from '@material-ui/icons/Brightness7Rounded';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
+import Brightness4RoundedIcon from '@mui/icons-material/Brightness4Rounded';
+import Brightness7RoundedIcon from '@mui/icons-material/Brightness7Rounded';
+import { AppBar, Toolbar } from '@mui/material';
 
 export default function Nav(props) {
   const theme = useTheme();

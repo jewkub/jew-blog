@@ -1,13 +1,13 @@
 import React, { lazy, Suspense } from "react";
 // import Articles from "../components/articles";
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import Seo from "../components/seo";
 import Image from "../components/image";
 // import Link from '../src/link';
 import { fetchAPI } from "../src/api";
-import { Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
 
 const Articles = lazy(() => import('../components/articles'));
 

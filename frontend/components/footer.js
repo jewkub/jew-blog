@@ -1,9 +1,9 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { useTheme } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { Stack } from '@material-ui/core';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+import { Stack } from '@mui/material';
 import Link from '../src/link';
 
 export default function Footer() {

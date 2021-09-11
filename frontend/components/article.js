@@ -3,14 +3,14 @@ import Link from "next/link";
 import Image from './image';
 // import Link from '../src/link';
 import { DateTime } from 'luxon';
-import Card from '@material-ui/core/Card'
-import Box from '@material-ui/core/Box'
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import Typography from '@material-ui/core/Typography';
+import Card from '@mui/material/Card'
+import Box from '@mui/material/Box'
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CardActionArea from '@mui/material/CardActionArea';
+import Typography from '@mui/material/Typography';
 import { getStrapiMedia } from "../src/media";
-import { Avatar, CardHeader, IconButton } from "@material-ui/core";
+import { Avatar, CardHeader, IconButton } from "@mui/material";
 
 import { Blurhash } from "react-blurhash";
 
