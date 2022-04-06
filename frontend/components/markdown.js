@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from 'rehype-raw';
-import Gist from 'react-gist';
+import Gist from './gist';
 import Link from '../src/link';
 import { useTheme } from '@mui/material/styles';
 import { Box } from "@mui/material";

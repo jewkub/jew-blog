@@ -1,9 +1,8 @@
 import Nav from "./nav";
 import React from 'react';
-import { useTheme, ThemeProvider, createMuiTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme, ThemeProvider, StyledEngineProvider, createMuiTheme } from '@mui/material/styles';
+// import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
 import loadTheme from '../src/theme';
 import Footer from './footer';
 
@@ -27,15 +26,14 @@ export default function Layout({ children }) {
   );
 
   return (
-    // <ColorModeContext.Provider value={colorMode}>
-    
+    <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <div style={{
           display:'flex',
           flexDirection:'column',
-          minHeight: '100vh'
+          minHeight: '100vh',
         }}>
           <Nav toggleColorMode={toggleColorMode}/>
           {children}
@@ -44,6 +42,6 @@ export default function Layout({ children }) {
         </div>
         
       </ThemeProvider>
-    // </ColorModeContext.Provider>
-  )
+    </StyledEngineProvider>
+  );
 };

@@ -4,9 +4,7 @@ import Image from './image';
 // import Link from '../src/link';
 import { DateTime } from 'luxon';
 import Card from '@mui/material/Card'
-import Box from '@mui/material/Box'
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 import { getStrapiMedia } from "../src/media";

@@ -3,9 +3,10 @@ import Head from "next/head";
 // import PropTypes from 'prop-types';
 import "../assets/css/style.css";
 import React, { createContext } from "react";
-import { getStrapiMedia } from "../src/media";
+// import { getStrapiMedia } from "../src/media";
 import { fetchAPI } from "../src/api";
 import NoSsr from '@mui/material/NoSsr';
+import Button from '@mui/material/Button';
 import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 import Layout from "../components/layout";
 // import theme from '../src/theme';
@@ -40,24 +41,12 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="dns-prefetch" href="https://backend.jewkub.dev"/>
 
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
-        {/* <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/css/uikit.min.css"
-        />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js" />
-        <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js" />
-        */ }
       </Head>
-      <NoSsr>
-        <GlobalContext.Provider value={global}>
-          <StyledEngineProvider injectFirst>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </StyledEngineProvider>
-        </GlobalContext.Provider>
-      </NoSsr>
+      <GlobalContext.Provider value={global}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </GlobalContext.Provider>
     </>
   );
 };
