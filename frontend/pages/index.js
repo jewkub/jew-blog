@@ -10,6 +10,7 @@ import { fetchAPI } from "../src/api";
 import { Typography } from "@mui/material";
 
 const Articles = lazy(() => import('../components/articles'));
+// import Articles from '../components/articles';
 
 const Home = ({ articles, homepage }) => {
   return (

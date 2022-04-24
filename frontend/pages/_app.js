@@ -5,9 +5,9 @@ import "../assets/css/style.css";
 import React, { createContext } from "react";
 // import { getStrapiMedia } from "../src/media";
 import { fetchAPI } from "../src/api";
-import NoSsr from '@mui/material/NoSsr';
-import Button from '@mui/material/Button';
-import StyledEngineProvider from '@mui/material/StyledEngineProvider';
+// import NoSsr from '@mui/material/NoSsr';
+// import Button from '@mui/material/Button';
+// import StyledEngineProvider from '@mui/material/StyledEngineProvider';
 import Layout from "../components/layout";
 // import theme from '../src/theme';
 
@@ -30,23 +30,15 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        {/* <link rel="shortcut icon" href={getStrapiMedia(global.favicon)} />
-        don't use global here, some shit happened, global become undefined
-        maybe MyApp.getInitialProps in pages with getstaticpaths with fallback true will not run at all
-        https://github.com/vercel/next.js/discussions/16712#discussioncomment-59580 */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
-        <link rel="preconnect" href="https://backend.jewkub.dev"/>
-        <link rel="dns-prefetch" href="https://backend.jewkub.dev"/>
-
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
       </Head>
-      <GlobalContext.Provider value={global}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </GlobalContext.Provider>
+      <React.StrictMode>
+        <GlobalContext.Provider value={global}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </GlobalContext.Provider>
+      </React.StrictMode>
     </>
   );
 };

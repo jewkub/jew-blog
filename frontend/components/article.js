@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Link from "next/link";
-import Image from './image';
+// import Image from './image';
 // import Link from '../src/link';
 import { DateTime } from 'luxon';
 import Card from '@mui/material/Card'
@@ -8,12 +8,12 @@ import CardContent from '@mui/material/CardContent';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 import { getStrapiMedia } from "../src/media";
-import { Avatar, CardHeader, IconButton } from "@mui/material";
+import { Avatar, CardHeader, CardMedia, IconButton } from "@mui/material";
 
 import { Blurhash } from "react-blurhash";
 
 export default function Article({ article }) {
-  const [hideHash, setHideHash] = useState(false);
+  // const [hideHash, setHideHash] = useState(false);
 
   return (
     <Link as={`/article/${article.slug}`} href="/article/[slug]">
@@ -37,15 +37,27 @@ export default function Article({ article }) {
             subheader={ DateTime.fromISO(article.publishedAt).toFormat('DDD') }
           />
         
-          {/* <CardMedia
-            sx={{
-              height: 0,
-              paddingTop: '56.25%', // 16:9
-            }}
-            image={getStrapiMedia(article.cover)}
-            title={article.title}
-          /> */}
-          <div style={{
+          <Suspense fallback={
+            <Blurhash
+              sx={{
+                height: 0,
+                paddingTop: '56.25%', // 16:9
+              }}
+              hash={article.blurhash || 'LGF5]+Yk^6#M@-5c,1J5@[or[Q6.'}
+              width="100%"
+              height="100%"
+            />
+          }>
+            <CardMedia
+              sx={{
+                height: 0,
+                paddingTop: '56.25%', // 16:9
+              }}
+              image={getStrapiMedia(article.cover)}
+              title={article.title}
+            />
+          </Suspense>
+          {/* <div style={{
             height: 0,
             width: '100%',
             paddingTop: '56.25%', // 16:9
@@ -77,7 +89,7 @@ export default function Article({ article }) {
               }}
               onLoad={() => setHideHash(true)}
             />
-          </div>
+          </div> */}
           <CardContent>
             <Typography variant="h5" component="h1" children={ article.title }/>
             <Typography

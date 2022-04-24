@@ -1,12 +1,12 @@
 import Nav from "./nav";
 import React from 'react';
-import { useTheme, ThemeProvider, StyledEngineProvider, createMuiTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 // import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import loadTheme from '../src/theme';
 import Footer from './footer';
 
-// const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 export default function Layout({ children }) {
   /* const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', {
@@ -16,32 +16,45 @@ export default function Layout({ children }) {
 
   const [mode, setMode] = React.useState(prefersDarkMode ? 'dark' : 'light');
 
-  const toggleColorMode = () => {
-    setMode(prevMode => prevMode === 'light' ? 'dark' : 'light');
-  }
-
-  const theme = React.useMemo(
-    loadTheme(mode),
-    [mode, prefersDarkMode],
+  const colorMode = React.useMemo(() => ({
+      // The dark mode switch would invoke this method
+      toggleColorMode: () => {
+        setMode(prevMode => prevMode === 'light' ? 'dark' : 'light',
+        );
+      },
+    }),
+    [],
   );
 
+  // const toggleColorMode = () => {
+  //   setMode(prevMode => prevMode === 'light' ? 'dark' : 'light');
+  // }
+
+  // const theme = React.useMemo(
+  //   loadTheme(mode),
+  //   [mode, prefersDarkMode],
+  // );
+
+  // Update the theme only if the mode changes
+  const theme = loadTheme(mode);
+
   return (
-    <StyledEngineProvider injectFirst>
+    <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
+        <CssBaseline enableColorScheme={true}/>
         <div style={{
           display:'flex',
           flexDirection:'column',
           minHeight: '100vh',
         }}>
-          <Nav toggleColorMode={toggleColorMode}/>
+          <Nav toggleColorMode={colorMode.toggleColorMode}/>
           {children}
         
         <Footer />
         </div>
         
       </ThemeProvider>
-    </StyledEngineProvider>
+      </ColorModeContext.Provider>
   );
 };
