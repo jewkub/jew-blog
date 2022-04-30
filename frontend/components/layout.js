@@ -6,8 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import loadTheme from '../src/theme';
 import Footer from './footer';
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-
 export default function Layout({ children }) {
   /* const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)', {
     noSsr: true,
@@ -39,24 +37,20 @@ export default function Layout({ children }) {
   const theme = loadTheme(mode);
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline enableColorScheme={true}/>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-          backgroundColor: theme.palette.bg,
-          transition: 'background-color 0.2s, color 0.2s',
-        }}>
-          <Nav toggleColorMode={colorMode.toggleColorMode}/>
+    <ThemeProvider theme={theme}>
+      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+      <CssBaseline enableColorScheme={true}/>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        backgroundColor: theme.palette.bg,
+        transition: 'background-color 0.2s, color 0.2s',
+      }}>
+        <Nav toggleColorMode={colorMode.toggleColorMode}/>
           {children}
-        
         <Footer />
-        </div>
-        
-      </ThemeProvider>
-      </ColorModeContext.Provider>
+      </div>
+    </ThemeProvider>
   );
 };

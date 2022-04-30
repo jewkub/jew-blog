@@ -17,13 +17,13 @@ export default function Markdown(props) {
           p: ({ children }) => <p style={{lineHeight: '1.5'}} children={children} />,
           li: ({ children }) => <li style={{lineHeight: '1.5'}} children={children} />,
           pre: ({ children }) => <pre style={{
-            background: theme => theme.palette.code,
+            // background: theme => theme.palette.code,
             borderRadius: '8px',
             padding: '8px',
             overflow: 'hidden', // just for sure viewport will not break
           }} children={children} />,
           code: ({ children }) => <code style={{
-            background: theme => theme.palette.code,
+            // background: theme => theme.palette.code,
             borderRadius: '4px',
             padding: '2px 4px',
             whiteSpace: 'pre-wrap',

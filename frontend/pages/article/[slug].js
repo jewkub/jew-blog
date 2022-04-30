@@ -6,13 +6,12 @@ import { getStrapiMedia } from '../../src/media';
 import Divider from '../../components/divider';
 import Image from '../../components/image';
 import Seo from '../../components/seo';
+import { Box } from '@mui/material';
 
 // import Link from '../../src/link';
 // import MuiLink from '@mui/material/Link';
-// import { useTheme } from '@mui/material/styles';
 import { Avatar, Stack, Container, Grid, CircularProgress } from '@mui/material';
 
-// import Markdown from '../../components/markdown';
 const markdownPromise = import('../../components/markdown');
 const Markdown = React.lazy(() => markdownPromise);
 
@@ -36,12 +35,14 @@ export default function Article({ article }) {
     shareImage: article.image,
     article: true,
   };
-  // const theme = useTheme();
 
   return (
     <>
       <Seo seo={seo} />
-      <Container pt={4}>
+      <Container sx={{
+        // TODO: use global context for nav height
+        paddingTop: '6rem',
+      }}>
         <h1 style={{fontSize: '3rem', marginBottom: '10px'}}>{article.title}</h1>
         <Grid container spacing={1} mb={5}>
           <Grid item xs='auto'>
@@ -53,8 +54,9 @@ export default function Article({ article }) {
           <Grid item>
             <Stack spacing={0}>
               <span>{article.author.name}</span>
-              <span style={{
+              <Box sx={{
                 color: theme => theme.palette.text.secondary,
+                transition: 'color 0.2s',
                 fontSize: 'smaller',
               }} children={DateTime.fromISO(article.publishedAt).toFormat('DDD')}/>
             </Stack>
@@ -80,8 +82,9 @@ export default function Article({ article }) {
           <Grid item>
             <Stack spacing={0}>
               <span>By {article.author.name}</span>
-              <span style={{
+              <Box sx={{
                 color: theme => theme.palette.text.secondary,
+                transition: 'color 0.2s',
                 fontSize: 'smaller',
               }} children={DateTime.fromISO(article.publishedAt).toFormat('DDD')}/>
             </Stack>

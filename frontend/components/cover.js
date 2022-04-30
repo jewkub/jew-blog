@@ -27,7 +27,7 @@ export default function Cover() {
 
   return (
     <div style={{
-      height: 'calc(100vh - 6rem)',
+      height: '100vh',
       maxHeight: '100vw',
       position: 'relative',
     }}>

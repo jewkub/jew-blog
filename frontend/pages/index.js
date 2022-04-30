@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-import { Typography, Box, Container, CircularProgress } from '@mui/material';
+import { Container, CircularProgress } from '@mui/material';
 import Seo from '../components/seo';
 import Cover from '../components/cover';
 // import Image from '../components/image';
@@ -8,14 +8,13 @@ import { fetchAPI } from '../src/api';
 
 const articlesPromise = import('../components/articles');
 const Articles = lazy(() => articlesPromise);
-// import Articles from '../components/articles';
 
 const Home = ({ articles, homepage }) => {
   return (
     <>
       <Seo seo={homepage.seo} />
+      <Cover/>
       <Container>
-        <Cover/>
         <Suspense fallback={<CircularProgress />}>
           <Articles articles={articles} />
         </Suspense>
