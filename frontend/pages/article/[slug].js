@@ -1,19 +1,20 @@
+import React, { Suspense } from 'react';
 import { useRouter } from 'next/router'
-import { fetchAPI } from "../../src/api";
+import { fetchAPI } from '../../src/api';
 import { DateTime } from 'luxon';
-import { getStrapiMedia } from "../../src/media";
-import Container from '@mui/material/Container';
+import { getStrapiMedia } from '../../src/media';
 import Divider from '../../components/divider';
-import Image from "../../components/image";
-import Seo from "../../components/seo";
-import Markdown from '../../components/markdown';
-import Grid from '@mui/material/Grid';
-// import Typography from '@mui/material/Typography';
-// import Box from '@mui/material/Box';
+import Image from '../../components/image';
+import Seo from '../../components/seo';
+
 // import Link from '../../src/link';
 // import MuiLink from '@mui/material/Link';
-import { useTheme } from '@mui/material/styles';
-import { Avatar, Stack } from "@mui/material";
+// import { useTheme } from '@mui/material/styles';
+import { Avatar, Stack, Container, Grid, CircularProgress } from '@mui/material';
+
+// import Markdown from '../../components/markdown';
+const markdownPromise = import('../../components/markdown');
+const Markdown = React.lazy(() => markdownPromise);
 
 export default function Article({ article }) {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function Article({ article }) {
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <CircularProgress/>;
   }
 
   if (!article) {
@@ -35,7 +36,7 @@ export default function Article({ article }) {
     shareImage: article.image,
     article: true,
   };
-  const theme = useTheme();
+  // const theme = useTheme();
 
   return (
     <>
@@ -53,14 +54,16 @@ export default function Article({ article }) {
             <Stack spacing={0}>
               <span>{article.author.name}</span>
               <span style={{
-                color: theme.palette.text.secondary,
+                color: theme => theme.palette.text.secondary,
                 fontSize: 'smaller',
               }} children={DateTime.fromISO(article.publishedAt).toFormat('DDD')}/>
             </Stack>
           </Grid>
         </Grid>
 
-        <Markdown content={article.content} />
+        <Suspense fallback={<CircularProgress/>}>
+          <Markdown content={article.content} />
+        </Suspense>
 
         <Divider/>
         <Grid container spacing={1} mb={2}>
@@ -70,7 +73,7 @@ export default function Article({ article }) {
               style={{
                 height: 40,
                 width: 40,
-                borderRadius: "50%"
+                borderRadius: '50%'
               }}
             />
           </Grid>
@@ -78,7 +81,7 @@ export default function Article({ article }) {
             <Stack spacing={0}>
               <span>By {article.author.name}</span>
               <span style={{
-                color: theme.palette.text.secondary,
+                color: theme => theme.palette.text.secondary,
                 fontSize: 'smaller',
               }} children={DateTime.fromISO(article.publishedAt).toFormat('DDD')}/>
             </Stack>
@@ -90,7 +93,7 @@ export default function Article({ article }) {
 };
 
 export async function getStaticPaths() {
-  const articles = await fetchAPI("/articles");
+  const articles = await fetchAPI('/articles');
 
   return {
     paths: articles.map((article) => ({
@@ -106,7 +109,7 @@ export async function getStaticProps({ params }) {
   const articles = await fetchAPI(
     `/articles?slug=${params.slug}&status=published`
   );
-  // const categories = await fetchAPI("/categories");
+  // const categories = await fetchAPI('/categories');
 
   return {
     props: { article: articles[0] || null },

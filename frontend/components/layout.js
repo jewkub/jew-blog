@@ -1,4 +1,4 @@
-import Nav from "./nav";
+import Nav from './nav';
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 // import useMediaQuery from '@mui/material/useMediaQuery';
@@ -44,9 +44,11 @@ export default function Layout({ children }) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline enableColorScheme={true}/>
         <div style={{
-          display:'flex',
-          flexDirection:'column',
+          display: 'flex',
+          flexDirection: 'column',
           minHeight: '100vh',
+          backgroundColor: theme.palette.bg,
+          transition: 'background-color 0.2s, color 0.2s',
         }}>
           <Nav toggleColorMode={colorMode.toggleColorMode}/>
           {children}
