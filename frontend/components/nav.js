@@ -27,15 +27,13 @@ export default function Nav(props) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   });
 
   return (
     <AppBar sx={{
       position: 'fixed',
-      background: transparent ? 'rgba(0, 0, 0, 0)' : theme => theme.palette.appbar,
+      background: transparent ? 'rgba(0, 0, 0, 0)' : theme.palette.appbar,
       ...(transparent ? {
         boxShadow: 'none'
       } : null),
@@ -52,7 +50,7 @@ export default function Nav(props) {
             p: 3,
           }}
         >
-          <Link href="/" passHref>
+          <Link href='/' passHref>
             <Button color={'inherit'}>My Blog</Button>
           </Link>
           <IconButton

@@ -10,15 +10,15 @@ export default function Footer() {
     }}>
       <Container>
         <Stack direction='row'>
-          <Typography variant="body2" color="textSecondary">
+          <Typography variant='body2' color='textSecondary'>
             { `© Jew • ${new Date().getFullYear()}` }
           </Typography>
-          <Typography variant="body2" color="textSecondary" ml={'auto'}>
-            <Link href="https://www.facebook.com/jewkubb/">
+          <Typography variant='body2' color='textSecondary' ml={'auto'}>
+            <Link href='https://www.facebook.com/jewkubb/'>
               Facebook
             </Link>
-            {' • '}
-            <Link href="https://github.com/jewkub">
+            { ' • ' }
+            <Link href='https://github.com/jewkub'>
               Github
             </Link>
           </Typography>

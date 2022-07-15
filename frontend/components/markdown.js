@@ -2,8 +2,10 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import Gist from './gist';
 import Link from '../src/link';
+import { useTheme } from '@mui/material/styles';
 
 export default function Markdown(props) {
+  const theme = useTheme();
   return (
     <div style={{
       minHeight: '10vh',
@@ -17,13 +19,13 @@ export default function Markdown(props) {
           p: ({ children }) => <p style={{lineHeight: '1.5'}} children={children} />,
           li: ({ children }) => <li style={{lineHeight: '1.5'}} children={children} />,
           pre: ({ children }) => <pre style={{
-            // background: theme => theme.palette.code,
+            background: theme.palette.code,
             borderRadius: '8px',
             padding: '8px',
             overflow: 'hidden', // just for sure viewport will not break
           }} children={children} />,
           code: ({ children }) => <code style={{
-            // background: theme => theme.palette.code,
+            background: theme.palette.code,
             borderRadius: '4px',
             padding: '2px 4px',
             whiteSpace: 'pre-wrap',
