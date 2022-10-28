@@ -12,6 +12,7 @@ const getDesignTokens = (mode) => ({
       appbar: '#4caf50',
       code: '#ddd',
       bg: '#c7e5c8',
+      about: '#98ee99',
     } : {
       // palette values for dark mode
       mode: 'dark',
@@ -21,6 +22,7 @@ const getDesignTokens = (mode) => ({
       appbar: '#212121',
       code: '#303030',
       bg: '#121212',
+      about: '#1e1e1e',
     }),
   },
 });

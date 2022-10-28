@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { Container, CircularProgress } from '@mui/material';
 import Seo from '../components/seo';
 import Cover from '../components/cover';
+import About from '../components/about';
 // import Image from '../components/image';
 // import Link from '../src/link';
 import { fetchAPI } from '../src/api';
@@ -14,6 +15,7 @@ const Home = ({ articles, homepage }) => {
     <>
       <Seo seo={homepage.seo} />
       <Cover/>
+      <About/>
       <Container>
         <Suspense fallback={<CircularProgress />}>
           <Articles articles={articles} />

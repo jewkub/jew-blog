@@ -15,7 +15,7 @@ export default function Nav(props) {
   const [transparent, setTransparent] = useState(isHomePage);
   const handleScroll = () => {
     const position = window.pageYOffset;
-    setTransparent(position < window.innerHeight);
+    setTransparent(position < Math.min(window.innerHeight, window.innerWidth));
   };
 
   useEffect(() => {
