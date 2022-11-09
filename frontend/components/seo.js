@@ -5,6 +5,8 @@ import { getStrapiMedia } from "../src/media";
 
 export default function Seo({ seo }) {
   const { defaultSeo, siteName, favicon } = useContext(GlobalContext);
+  console.log('dawdsdwasdwa');
+  console.log(defaultSeo, siteName, favicon);
   const seoWithDefaults = {
     ...defaultSeo,
     ...seo,

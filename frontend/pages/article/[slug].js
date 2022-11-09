@@ -25,7 +25,7 @@ export default function Article({ article }) {
   }
 
   if (!article) {
-    router.push('/404');
+    // router.push('/404'); TODO: https://nextjs.org/docs/messages/no-router-instance
     return <></>;
   }
 
@@ -101,7 +101,7 @@ export async function getStaticPaths() {
   return {
     paths: articles.map((article) => ({
       params: {
-        slug: article.slug,
+        slug: article.attributes.Slug,
       },
     })),
     fallback: true,
@@ -115,7 +115,7 @@ export async function getStaticProps({ params }) {
   // const categories = await fetchAPI('/categories');
 
   return {
-    props: { article: articles[0] || null },
+    props: { article: articles.data || null },
     revalidate: 5,
   };
 }

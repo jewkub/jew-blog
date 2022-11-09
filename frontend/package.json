@@ -15,6 +15,7 @@
     "@types/react": "^18.0.24",
     "blurhash": "^2.0.3",
     "clsx": "^1.2.1",
+    "eslint": "^8.27.0",
     "eslint-config-next": "^13.0.0",
     "luxon": "^3.0.4",
     "next": "^13.0.0",
