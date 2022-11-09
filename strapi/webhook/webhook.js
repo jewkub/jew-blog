@@ -1,5 +1,5 @@
 require('dotenv').config();
-var repo = '~/strapi/';
+var repo = '~/jew-blog/';
 
 const http = require('http');
 const crypto = require('crypto');
@@ -18,7 +18,7 @@ http
           .digest('hex');
 
       if (req.headers['x-hub-signature'] == sig) {
-        exec(`cd ${repo} && git pull && ${PM2_CMD}`, (error, stdout, stderr) => {
+        exec(`cd ${repo} && git pull && cd strapi && yarn && yarn build && ${PM2_CMD}`, (error, stdout, stderr) => {
           if (error) {
             console.error(`exec error: ${error}`);
             return;
@@ -31,4 +31,4 @@ http
 
     res.end();
   })
-  .listen(8080);
+  .listen(8000);
