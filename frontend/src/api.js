@@ -8,10 +8,19 @@ export function getStrapiURL(path = "") {
   return `${url.href}?${params.toString().replace('*', '%2A')}`; // TODO: shit
 }
 
+const extract = data => {
+  if (data.data === undefined) return ;
+  data = data.data?.attributes;
+  if (data?.constructor === Array) data = data.map(e => extract(e));
+  data = extract(data);
+  return data;
+}
+
 // Helper to make GET requests to Strapi
 export async function fetchAPI(path) {
   const requestUrl = getStrapiURL(path);
   const response = await fetch(requestUrl);
-  const data = (await response.json()).data;
+  const data = extract(await response.json());
+  console.log(data);
   return data;
 }

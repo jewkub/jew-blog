@@ -4,28 +4,29 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article"
+    "displayName": "Article",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "Description": {
+    "description": {
       "type": "text"
     },
-    "Content": {
+    "content": {
       "type": "richtext"
     },
-    "PublishedDate": {
+    "publishedDate": {
       "type": "datetime",
       "required": true
     },
-    "Status": {
+    "status": {
       "type": "enumeration",
       "enum": [
         "Draft",
@@ -33,19 +34,20 @@
       ],
       "required": true
     },
-    "Slug": {
+    "slug": {
       "type": "uid",
       "required": true
     },
-    "Cover": {
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "writer": {
       "type": "relation",
