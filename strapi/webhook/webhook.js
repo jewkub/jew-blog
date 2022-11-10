@@ -25,7 +25,7 @@ http
           `git pull`, // https://stackoverflow.com/a/29206075/4468834
           `cd strapi`,
           `yarn`,
-          `yarn build`,
+          `NODE_ENV=production yarn build`,
           `${PM2_CMD}`,
         ].join(' && '), (error, stdout, stderr) => {
           if (error) {

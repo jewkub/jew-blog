@@ -9,10 +9,18 @@ export function getStrapiURL(path = "") {
 }
 
 const extract = data => {
-  if (data.data === undefined) return ;
-  data = data.data?.attributes;
-  if (data?.constructor === Array) data = data.map(e => extract(e));
-  data = extract(data);
+  // console.log(data);
+  if (data?.data !== undefined) {
+    data = data.data;
+    if (data === null || data == undefined) return data;
+    if (data.constructor === Array) return data.map(e => extract(e.attributes));
+    data = data.attributes;
+  }
+  if (data?.constructor === Object) {
+    Object.keys(data).forEach((key, i) => {
+      data[key] = extract(data[key]);
+    })
+  }
   return data;
 }
 
@@ -20,7 +28,8 @@ const extract = data => {
 export async function fetchAPI(path) {
   const requestUrl = getStrapiURL(path);
   const response = await fetch(requestUrl);
+  // console.log(path);
   const data = extract(await response.json());
-  console.log(data);
+  // console.log(data);
   return data;
 }

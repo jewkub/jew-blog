@@ -13,7 +13,6 @@ import { Avatar, CardHeader, CardMedia } from '@mui/material';
 // import { Blurhash } from "react-blurhash";
 
 export default function Article({ article }) {
-  console.log(article);
   return (
     <Link as={`/article/${article.slug}`} href='/article/[slug]'>
       <Card sx={{
@@ -30,7 +29,7 @@ export default function Article({ article }) {
               <Avatar
                 aria-label='avatar'
                 alt={ article.writer.name }
-                src={ getStrapiMedia(article.writer.picture) }/>
+                src={ getStrapiMedia(article.writer.avatar) }/>
             }
             title={ article.writer.name }
             subheader={ DateTime.fromISO(article.publishedAt).toFormat('DDD') }

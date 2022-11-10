@@ -48,12 +48,12 @@ export default function Article({ article }) {
           <Grid item xs='auto'>
             <Avatar
               aria-label='avatar'
-              alt={ article.author.name }
-              src={ getStrapiMedia(article.author.picture) }/>
+              alt={ article.writer.name }
+              src={ getStrapiMedia(article.writer.avatar) }/>
           </Grid>
           <Grid item>
             <Stack spacing={0}>
-              <span>{article.author.name}</span>
+              <span>{article.writer.name}</span>
               <Box sx={{
                 color: theme => theme.palette.text.secondary,
                 transition: 'color 0.2s',
@@ -71,7 +71,7 @@ export default function Article({ article }) {
         <Grid container spacing={1} mb={2}>
           <Grid item xs='auto'>
             <Image
-              image={article.author.picture}
+              image={article.writer.avatar}
               style={{
                 height: 40,
                 width: 40,
@@ -81,7 +81,7 @@ export default function Article({ article }) {
           </Grid>
           <Grid item>
             <Stack spacing={0}>
-              <span>By {article.author.name}</span>
+              <span>By {article.writer.name}</span>
               <Box sx={{
                 color: theme => theme.palette.text.secondary,
                 transition: 'color 0.2s',
@@ -101,7 +101,7 @@ export async function getStaticPaths() {
   return {
     paths: articles.map((article) => ({
       params: {
-        slug: article.attributes.Slug,
+        slug: article.slug,
       },
     })),
     fallback: true,
@@ -110,12 +110,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const articles = await fetchAPI(
-    `/articles?slug=${params.slug}&status=published`
+    `/articles?filters[slug][$eq]=${params.slug}&status=published&_sort=publishedAt:desc&populate[1]=writer.avatar&populate[0]=cover`
   );
   // const categories = await fetchAPI('/categories');
 
   return {
-    props: { article: articles.data || null },
+    props: { article: articles[0] || null },
     revalidate: 5,
   };
 }
