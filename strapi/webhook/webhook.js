@@ -1,15 +1,16 @@
+const util = require('node:util');
 require('dotenv').config();
-var repo = '~/jew-blog/';
+var repo = '/home/jew/jew-blog';
 
 const http = require('http');
 const crypto = require('crypto');
-const exec = require('child_process').exec;
+const exec = util.promisify(require('child_process').exec);
 
 const PM2_CMD = 'cd ~ && pm2 startOrRestart ecosystem.config.js';
 
 http
   .createServer(function(req, res) {
-    req.on('data', function(chunk) {
+    req.on('data', async function(chunk) {
       let sig =
         'sha1=' +
         crypto
@@ -18,26 +19,28 @@ http
           .digest('hex');
 
       if (req.headers['x-hub-signature'] == sig) {
-        exec([
-          `cd ${repo}`,
-          `git fetch --all`,
-          `git reset --hard origin/main`,
-          `git pull`, // https://stackoverflow.com/a/29206075/4468834
-          `cd strapi`,
-          `yarn`,
-          `NODE_ENV=production yarn build`,
-          `${PM2_CMD}`,
-        ].join(' && '), (error, stdout, stderr) => {
-          if (error) {
-            console.error(`exec error: ${error}`);
-            return;
+        const commands = [
+          [`pm2 stop strapi`, repo],
+          [`git fetch --all`, repo],
+          [`git reset --hard origin/main`, repo],
+          [`git pull`, repo], // https://stackoverflow.com/a/29206075/4468834
+          [`yarn`, `${repo}/strapi`],
+          [`NODE_ENV=production yarn build`, `${repo}/strapi`],
+          [`${PM2_CMD}`, `${repo}/strapi`],
+        ];
+
+        try {
+          for (let e of commands){
+            let out = await exec(e[0], { cwd: e[1] });
+            console.log('stdout:', out.stdout);
+            console.log('stderr:', out.stderr);
           }
-          console.log(`stdout: ${stdout}`);
-          console.log(`stderr: ${stderr}`);
-        });
+        } catch (e) {
+          console.error(e); // should contain code (exit code) and signal (that caused the termination).
+        }
+        // https://stackoverflow.com/a/56095793/4468834
       }
     });
-
     res.end();
   })
   .listen(8000);
